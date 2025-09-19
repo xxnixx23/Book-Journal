@@ -1,0 +1,66 @@
+<?php
+// Include the database connection file
+require __DIR__ . '/db_connect.php';
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <!-- Google Fonts Link for Playfair Display and Open Sans -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+
+</head>
+
+<body>
+
+    <div class="navbar">
+        <!-- Logo and Name -->
+        <div class="navbar-logo">
+            <img src="photos/logo.png" alt="Logo">
+            <span>Scriptura</span>
+        </div>
+
+        <div class="navbar-links">
+            <a href="index.php">Home</a>
+            <a href="archives.php">Archives</a>
+
+            <a href="/nav/submission.php">Submissions</a>
+
+            <div class="dropdown">
+                <a href="nav/announcement.php">About</a>
+                <div class="dropdown-content">
+                    <a href="nav/announcement.php">Announcements</a>
+                    <a href="nav/editorial.php">Editorial Team</a>
+                    <a href="/nav/aboutus.php">About Us</a>
+                    <a href="/nav/contactus.php">Contact Us</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Icon and Auth Links -->
+        <div class="auth-section">
+            <div class="search-bar">
+                <a href="search.php">
+                    <img src="photos/search.png" alt="Search">
+                    <span>Search</span>
+                </a>
+            </div>
+            <div class="auth-links">
+                <a href="register/signin.php">Sign In</a>
+                <a href="register/signup.php">Sign Up</a>
+            </div>
+        </div>
+    </div>
+    <br><br>
+</body>
+
+</html>

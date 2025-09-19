@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Journal System</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        header nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 1em;
+        }
+
+        section {
+            background: white;
+            padding: 1em;
+            margin-bottom: 1em;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #007BFF;
+        }
+
+        form label {
+            display: block;
+            margin: 0.5em 0 0.2em;
+        }
+
+        form input,
+        form textarea,
+        form select,
+        form button {
+            width: 100%;
+            padding: 0.5em;
+            margin-bottom: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Editor & Reviewer Panels */
+        #editor-panel,
+        #reviewer-panel {
+            background: #f9f9f9;
+            padding: 1em;
+            border-radius: 5px;
+        }
+
+        #editor-panel ul,
+        #reviewer-panel ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #editor-panel li,
+        #reviewer-panel li {
+            margin-bottom: 1em;
+            padding: 0.5em;
+            background: #e9ecef;
+            border-radius: 5px;
+        }
+
+        #editor-panel button,
+        #reviewer-panel button {
+            margin-right: 5px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 0.5em 1em;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #editor-panel button:hover,
+        #reviewer-panel button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            text-align: center;
+            background: #333;
+            color: white;
+            padding: 1em 0;
+            margin-top: 2em;
+        }
+
+        #author-revision {
+            background: white;
+            padding: 1em;
+            margin-top: 1em;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #author-revision h2 {
+            color: #007BFF;
+        }
+
+        #author-revision p {
+            margin: 0.5em 0;
+            font-size: 1em;
+        }
+
+        #author-revision form label {
+            display: block;
+            margin: 0.5em 0 0.2em;
+            font-weight: bold;
+        }
+
+        #author-revision form input,
+        #author-revision form textarea,
+        #author-revision form button {
+            width: 100%;
+            padding: 0.5em;
+            margin-bottom: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #author-revision form button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #author-revision form button:hover {
+            background-color: #0056b3;
+        }
+
+        #admin-dashboard {
+            background: white;
+            padding: 1em;
+            margin-top: 1em;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #admin-dashboard h2 {
+            color: #007BFF;
+            margin-bottom: 1em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1em;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #ddd;
+            padding: 0.8em;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        button {
+            padding: 0.5em 1em;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Online Journal System</h1>
+        <nav>
+            <a href="#author">Author</a>
+            <a href="#editor">Editor</a>
+            <a href="#reviewer">Reviewer</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Author Section -->
+        <section id="author">
+            <h2>Author</h2>
+            <form id="author-form">
+                <label for="category">Category:</label>
+                <select id="category" name="category">
+                    <option value="technology">Technology</option>
+                    <option value="science">Science</option>
+                    <option value="arts">Arts</option>
+                </select>
+
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" placeholder="Enter your article title">
+
+                <label for="abstract">Abstract:</label>
+                <textarea id="abstract" name="abstract" rows="5" placeholder="Write your abstract"></textarea>
+
+                <label for="cover">Upload Cover:</label>
+                <input type="file" id="cover" name="cover" accept="image/*">
+
+                <label for="manuscript">Upload Manuscript (PDF):</label>
+                <input type="file" id="manuscript" name="manuscript" accept="application/pdf">
+
+                <label for="keywords">Keywords (comma-separated):</label>
+                <input type="text" id="keywords" name="keywords" placeholder="e.g., innovation, technology">
+
+                <button type="submit">Submit Article</button>
+            </form>
+        </section>
+        <section id="author-revision">
+            <h2>Revise and Resubmit</h2>
+            <p><strong>Status:</strong> Needs Revision</p>
+            <p><strong>Editor Comments:</strong> Please clarify your methodology section.</p>
+
+            <form id="revision-form">
+                <label for="revised-title">Title:</label>
+                <input type="text" id="revised-title" name="title" value="The Future of AI">
+
+                <label for="revised-abstract">Abstract:</label>
+                <textarea id="revised-abstract" name="abstract"
+                    rows="5">This abstract discusses AI's impact on society.</textarea>
+
+                <label for="revised-cover">Upload Revised Cover:</label>
+                <input type="file" id="revised-cover" name="cover" accept="image/*">
+
+                <label for="revised-manuscript">Upload Revised Manuscript (PDF):</label>
+                <input type="file" id="revised-manuscript" name="manuscript" accept="application/pdf">
+
+                <label for="revised-keywords">Keywords (comma-separated):</label>
+                <input type="text" id="revised-keywords" name="keywords" value="AI, technology, future">
+
+                <button type="submit">Resubmit Article</button>
+            </form>
+        </section>
+
+        <!-- Editor Section -->
+        <section id="editor">
+            <h2>Editor</h2>
+            <div id="editor-panel">
+                <p><strong>Submitted Articles:</strong></p>
+                <ul>
+                    <li>
+                        <p>Title: Example Article</p>
+                        <p>Status: Submitted</p>
+                        <button>Edit</button>
+                        <textarea placeholder="Leave comments here"></textarea>
+                        <button>Needs Revision</button>
+                        <button>Approve for Review</button>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Reviewer Section -->
+        <section id="reviewer">
+            <h2>Reviewer</h2>
+            <div id="reviewer-panel">
+                <p><strong>Articles In Review:</strong></p>
+                <ul>
+                    <li>
+                        <p>Title: Example Article</p>
+                        <p>Status: In Review</p>
+                        <button>Accept</button>
+                        <button>Reject</button>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <section id="admin-dashboard">
+        <h2>Admin Dashboard</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Article ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Editor Comments</th>
+                    <th>Reviewer Decision</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Sample rows -->
+                <tr>
+                    <td>1</td>
+                    <td>The Future of AI</td>
+                    <td>John Doe</td>
+                    <td>Technology</td>
+                    <td>Needs Revision</td>
+                    <td>Please clarify your methodology section.</td>
+                    <td>Pending</td>
+                    <td>
+                        <button>View Details</button>
+                        <button>Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Impact of Climate Change</td>
+                    <td>Jane Smith</td>
+                    <td>Science</td>
+                    <td>Accepted</td>
+                    <td>-</td>
+                    <td>Accepted</td>
+                    <td>
+                        <button>View Details</button>
+                        <button>Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Online Journal System</p>
+    </footer>
+
+    <script>
+        // Simulated Database (for demonstration purposes)
+        let articles = [];
+
+        // 1. Author Functions
+        function submitArticle(authorName, category, title, abstract, coverFile, manuscriptFile, keywords) {
+            const newArticle = {
+                id: articles.length + 1,
+                author: authorName,
+                category: category,
+                title: title,
+                abstract: abstract,
+                cover: coverFile,
+                manuscript: manuscriptFile,
+                keywords: keywords.split(","),
+                status: "Submitted",
+                editorComments: "",
+                reviewerDecision: "",
+            };
+            articles.push(newArticle);
+            console.log(`Article submitted by ${authorName}:`, newArticle);
+            return newArticle;
+        }
+
+        // 2. Editor Functions
+        function reviewArticle(articleId, action, comments = "") {
+            const article = articles.find((a) => a.id === articleId);
+            if (!article) {
+                console.error("Article not found!");
+                return;
+            }
+
+            if (action === "Needs Revision") {
+                article.status = "Needs Revision";
+                article.editorComments = comments;
+                console.log(`Article ${articleId} requires revision. Comments: ${comments}`);
+            } else if (action === "In Review") {
+                article.status = "In Review";
+                console.log(`Article ${articleId} forwarded for review.`);
+            } else {
+                console.error("Invalid action by Editor!");
+            }
+        }
+
+        // 3. Reviewer Functions
+        function reviewDecision(articleId, decision, comments = "") {
+            const article = articles.find((a) => a.id === articleId);
+            if (!article || article.status !== "In Review") {
+                console.error("Article not found or not ready for review!");
+                return;
+            }
+
+            if (decision === "Accepted") {
+                article.status = "Accepted";
+                article.reviewerDecision = "Accepted";
+                console.log(`Article ${articleId} has been accepted.`);
+            } else if (decision === "Rejected") {
+                article.status = "Rejected";
+                article.reviewerDecision = "Rejected";
+                console.log(`Article ${articleId} has been rejected.`);
+            } else {
+                console.error("Invalid decision by Reviewer!");
+            }
+        }
+
+        // 4. Author Tracking Function
+        function trackArticleStatus(articleId) {
+            const article = articles.find((a) => a.id === articleId);
+            if (!article) {
+                console.error("Article not found!");
+                return;
+            }
+            console.log(`Tracking Article ${articleId}:`, article);
+        }
+
+        // Example Workflow
+        console.log("=== Example Workflow ===");
+
+        // Author Submits Article
+        const article1 = submitArticle(
+            "John Doe",
+            "Technology",
+            "The Future of AI",
+            "This abstract discusses AI's impact on society.",
+            "cover1.jpg",
+            "manuscript1.pdf",
+            "AI, technology, future"
+        );
+
+        // Editor Reviews Article and Requests Revision
+        reviewArticle(article1.id, "Needs Revision", "Please clarify your methodology section.");
+
+        // Author Checks Article Status
+        trackArticleStatus(article1.id);
+
+        // Editor Approves the Article for Review
+        reviewArticle(article1.id, "In Review");
+
+        // Reviewer Accepts the Article
+        reviewDecision(article1.id, "Accepted");
+
+        // Author Checks Final Status
+        trackArticleStatus(article1.id);
+        // Function to handle resubmission
+        function resubmitArticle(articleId) {
+            const article = articles.find((a) => a.id === articleId);
+            if (!article || article.status !== "Needs Revision") {
+                console.error("Article not eligible for resubmission!");
+                return;
+            }
+
+            // Simulate updating the article
+            article.title = document.getElementById("revised-title").value;
+            article.abstract = document.getElementById("revised-abstract").value;
+            article.cover = document.getElementById("revised-cover").files[0]?.name || article.cover;
+            article.manuscript = document.getElementById("revised-manuscript").files[0]?.name || article.manuscript;
+            article.keywords = document.getElementById("revised-keywords").value.split(",");
+            article.status = "Resubmitted";
+
+            console.log(`Article ${articleId} resubmitted:`, article);
+        }
+
+        // Add event listener for form submission
+        document.getElementById("revision-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            resubmitArticle(1); // Replace with the actual article ID
+        });
+        // Simulated articles data
+        let adminArticles = [
+            {
+                id: 1,
+                title: "The Future of AI",
+                author: "John Doe",
+                category: "Technology",
+                status: "Needs Revision",
+                editorComments: "Please clarify your methodology section.",
+                reviewerDecision: "Pending",
+            },
+            {
+                id: 2,
+                title: "Impact of Climate Change",
+                author: "Jane Smith",
+                category: "Science",
+                status: "Accepted",
+                editorComments: "",
+                reviewerDecision: "Accepted",
+            },
+        ];
+
+        // Populate Table Function
+        function populateAdminTable() {
+            const tbody = document.querySelector("#admin-dashboard tbody");
+            tbody.innerHTML = ""; // Clear existing rows
+
+            adminArticles.forEach((article) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+      <td>${article.id}</td>
+      <td>${article.title}</td>
+      <td>${article.author}</td>
+      <td>${article.category}</td>
+      <td>${article.status}</td>
+      <td>${article.editorComments || "-"}</td>
+      <td>${article.reviewerDecision || "Pending"}</td>
+      <td>
+        <button onclick="viewDetails(${article.id})">View Details</button>
+        <button onclick="deleteArticle(${article.id})">Delete</button>
+      </td>
+    `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // View Details Function
+        function viewDetails(articleId) {
+            const article = adminArticles.find((a) => a.id === articleId);
+            if (!article) {
+                console.error("Article not found!");
+                return;
+            }
+            alert(`Details of Article ${articleId}:\n${JSON.stringify(article, null, 2)}`);
+        }
+
+        // Delete Article Function
+        function deleteArticle(articleId) {
+            adminArticles = adminArticles.filter((a) => a.id !== articleId);
+            alert(`Article ${articleId} deleted!`);
+            populateAdminTable(); // Refresh table
+        }
+
+        // Initialize Table on Page Load
+        document.addEventListener("DOMContentLoaded", populateAdminTable);
+
+    </script>
+</body>
+
+</html>
